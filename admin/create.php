@@ -1,6 +1,6 @@
 <?php
 // Include config file
-$connection = mysqli_connect("localhost", "root", "root","test");
+$connection = mysqli_connect("localhost", "root", "","test");
  
 // Define variables and initialize with empty values
 $id = $uname = $password= $email="";

@@ -1,34 +1,56 @@
-<?php
+ <?php 
 
-$conn=new mysqli("localhost","root","root","test") or die("unable to connect");
-if ($conn){
-    echo"Connected Successfully";?><br><?php
-}
+    // include('connection.php');  
 
-    $id = $_POST['username'];
-    $password = $_POST['password'];
+    // $id = $_POST['username'];
+    // $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE id = '$id' AND password = '$password'";
-    $result = mysqli_query($conn,$sql);
-    $row = mysqli_fetch_array($result);
-    if($row['id'] == $id && $row['password'] == $password){
-        echo "Welcome ".$id;
+    // $sql = "select * from user where id = '$username' and password = '$password'";
+    // $result = mysqli_query($conn,$sql);
+    // $row = mysqli_fetch_array($result);
+    // if($row['id'] == $id && $row['password'] == $password){
+    //     echo "Welcome ".$id;
     
-        $string=exec('getmac');
-        $mac=substr($string, 0, 17); 
-        mysqli_query($conn,"UPDATE user SET address='$mac' where id='$id'");
+    //     // $string=exec('getmac');
+    //     // $mac=substr($string, 0, 17); 
+    //     // mysqli_query($conn,"UPDATE user SET address='$mac' where id='$id'");
 
-    }else{
-        echo"<script>alert('check')</script>";
-        echo"<script>location.replace('index.html')</script>";
-    }
+    // }else{
+    //     echo"<script>alert('check')</script>";
+    //     echo"<script>location.replace('index.html')</script>";
+    // }
 
-?>
+// ?>
+
+<?php      
+    include('connection.php');  
+
+       $username = $_POST['username'];  
+       $password = $_POST['password'];  
+      
+        //to prevent from mysqli injection  
+        $username = stripcslashes($username);  
+        $password = stripcslashes($password);  
+        $username = mysqli_real_escape_string($con, $username);  
+        $password = mysqli_real_escape_string($con, $password);  
+      
+        $sql = "select * from user where id = '$username' and password = '$password'";  
+        $result = mysqli_query($con, $sql);  
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+        $count = mysqli_num_rows($result);  
+          
+        if($count == 1){  
+            header("location:base.html");
+        }  
+        else{  
+            echo "<h1> Login failed. Invalid username or password.</h1>";  
+        }     
+?>  
 
 
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,7 +64,7 @@ if ($conn){
 
 <body style="background-color: gray;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-3">
-        <!-- <div class="container-fluid"> -->
+         <div class="container-fluid"> 
         <a class="navbar-brand" href="#">
             <h2>Open Ledger</h2>
         </a>
@@ -89,4 +111,4 @@ if ($conn){
         crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html> -->

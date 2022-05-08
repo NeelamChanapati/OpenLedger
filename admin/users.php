@@ -9,6 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
+        body{
+            margin-top:20px;
+            color: #1a202c;
+            text-align: left;
+            background-color: #d2f8d2;    
+  }
         .wrapper{
             width: 600px;
             margin: 0 auto;
@@ -16,6 +22,25 @@
         table tr td:last-child{
             width: 120px;
         }
+        .utitle{
+            font-family: 'Permanent Marker', cursive;
+            text-align: center;
+            font-size: 70px;
+            font-weight: 600;
+            background-image: linear-gradient(to left, #d0f0c0, #000000);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+        .pull-right{
+            font-family: 'Permanent Marker', cursive;
+            background-image: linear-gradient(to left, #d0f0c0, #000000);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+       
+
     </style>
     <script>
         $(document).ready(function(){
@@ -23,51 +48,22 @@
         });
     </script>
 </head>
-<body> 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-3">
-
-        <a class="navbar-brand" href="#">
-            <h2>Open Ledger</h2>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
-            aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="col-md-4 offset-5">
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDarkDropdown">
-                <ul class="navbar-nav ">
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle " href="#" id="navbarDarkDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Profile
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark-rigt" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Status</a></li>
-                            <li><a class="dropdown-item" href="#">Update</a></li>
-                            <li><a class="dropdown-item" href="#">logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <img src="https://www.kindpng.com/picc/m/171-1712282_profile-icon-png-profile-icon-vector-png-transparent.png"
-            alt="" width="60" height="60">
-</nav>
+<body>
         
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
-                        <h2 class="btn btn-success pull-left">Gluggies Details</h2>
-                        <a href="create.php" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add New Gluggie</a>
+                        <h1 class="utitle">Gluggies Information</h1>
+                        <!-- <h2 class="btn btn-success pull-left">Gluggies Details</h2> -->
                     </div>
                     <?php
                     // Include config file
                     // require_once "connection.php";
-                    $connection = mysqli_connect("localhost", "root", "root");
+                    $connection = mysqli_connect("localhost", "root", "");
                     $db = mysqli_select_db( $connection,"test") or die("Unable to connect to MySQL"); 
-                    $sql = "select * from users"; 
+                    $sql = "select * from user"; 
                     // Attempt select query execution
                     //$query = "SELECT * FROM users";
                     // $sql=mysql_query("select * from users",)or die(mysql_error());
@@ -88,9 +84,9 @@
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
                                         echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . $row['uname'] . "</td>";
-                                        echo "<td>" . $row['upassword'] . "</td>";
-                                        echo "<td>" . $row['email'] . "</td>";
+                                        echo "<td>" . $row['name'] . "</td>";
+                                        echo "<td>" . $row['password'] . "</td>";
+                                        echo "<td>" . $row['address'] . "</td>";
                                         echo "<td>";
                                             echo '<a href="read.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                             echo '<a href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
@@ -112,6 +108,8 @@
                     // Close connection
                     mysqli_close($connection);
                     ?>
+                    <a href="create.php" class="pull-right"><i class="fa fa-plus"></i> Add New Gluggie</a>
+
                 </div>
             </div>        
         </div>

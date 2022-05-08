@@ -1,190 +1,154 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>open ledger</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="icon" type="image/x-icon" href="l1.jpg">
-    </head>
-<style>
-       h1{
-        color:white;
-
-        }
-* {
+<head>
+  <title>Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
   margin: 0;
   padding: 0;
+    font-family: 'Open Sans', sans-serif;
 }
-
 body {
-  background: #30333A;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* background: url('https://th.bing.com/th/id/OIP.ODKZjbQydn9RQxR72n-sTwHaHa?pid=ImgDet&rs=1') no-repeat; */
+    /* background-size: cover;
+    background-position: center; */
+    background-color: #d2f8d2;
 }
-
-.wrapper {
-  position: absolute;
-  top: 70%;
-  left: 5%;
-  transform: translate(-50%, -50%);
+body:before {
+    content: "";
+    width: 100%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    height: 100vh;
+    background: url(images/shape-1.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -111;
+    opacity: 0.9;
 }
-
-ul {
-  list-style: none;
+section#landing-page {
+    position: fixed;
+    width: 100%;
+    max-width: 90%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
-
-ul li {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  background: #e59500;
-  margin: 10px 0;
-  cursor: pointer;
-  border-radius: 3px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+.branding {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    align-items: center;
+    padding: 20px 0;
 }
-
-ul li .fa {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  color: #fff;
+ul.listing {
+    display: flex;
+    align-items: center;
+    list-style: none;
 }
-
-ul li.facebook{
-  background: #3b5998;
+ul.listing li {
+    margin: 0 20px;
 }
-
-ul li.twitter{
-  background: #00aced;
+ul.listing > li > a {
+    color: #fff;
+    text-decoration: unset;
+    font-size: 20px;
+    line-height: 30px;
 }
-
-ul li.instagram{
-  background: #bc2a8d;
+.site-url {
+    display: block;
 }
-
-ul li.google{
-  background: #dd4b39;
+.site-url > img {
+    width: 100%;
+    max-width: 50px;
 }
-
-ul li.whatsapp{
-  background: #4dc247;
+.content {
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 200px);
 }
-
-ul li.facebook div.slider{
-  background: #627aac;
+h1 {
+    font-size: 100px;
+    font-family: 'Permanent Marker', cursive;
+    color: #fff;
 }
-
-ul li.twitter div.slider{
-  background: #7fd5f6;
+p {
+    font-size: 15px;
+    line-height: 25px;
+    color: #fff;
 }
-
-ul li.instagram div.slider{
-  background: #dd94c6;
+.btn-explore {
+    padding: 20px;
+    display: inline-block;
+    margin-top: 20px;
+    background: url(images/button.png)no-repeat;
+    background-size: cover;
+    width: 220px;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: unset;
 }
-
-ul li.google div.slider{
-  background: #eea59c;
+ul.social-icons.listing {
+    position: fixed;
+    bottom: 20px;
 }
-
-ul li.whatsapp div.slider{
-  background: #82d47e;
+ul.social-icons.listing > li > a {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #000;
+    border: 2px solid;
+    border-radius: 100%;
+    font-size: 15px;
 }
-
-.slider {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 51px;
-  width: 0px;
-  height: 50px;
-  background: #eebb5c;
-  border-radius: 3px;
-  transition: all 0.5s 0.3s ease;
+ul.social-icons.listing > li {
+    margin: 0 10px;
 }
-
-.slider p {
-  font-family: arial;
-  text-transform: uppercase;
-  font-size: 16px;
-  font-weight: 900;
-  color: #fff;
-  text-align: center;
-  line-height: 50px;
-  opacity: 0;
-  transition: all 0.6s ease;
-}
-
-ul li:hover .slider {
-  width: 180px;
-  transition: all 0.5s ease;
-}
-
-ul li:hover .slider p {
-  opacity: 1;
-  transition: all 1s 0.2s ease;
-}
-.youtube{
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  width: 160px;
-  text-align: center;
-  padding: 15px 10px;
-  background: #bb0000;
-  border-radius: 5px;
-}
-
-.youtube a{
-  text-decoration: none;
-  color: #fff;
-  text-transform: capitalize;
-  letter-spacing: 1px;
-}
-</style>
+    </style>
+</head>
 <body>
-    <h1 align="center">Glug Management System</h1><br><br>
-
-    <button style="margin-left: 40%; " class="w3-button w3-xxlarge w3-white w3-border w3-round-large"><a href="adminlogin.html">ADMIN LOGIN</a></button><br><br>
-    <button style="margin-left: 40%;" class="w3-button w3-xxlarge w3-white w3-border w3-round-large"><a href="userlogin.html">GLUGIE LOGIN</a></button>
-    <h2 style="color:white">Follow us on social media for the latest news, photos, and other updates!</h2>
-    <div class="wrapper">
-      <ul>
-        <li class="facebook">
-          <i class="fa fa-facebook" aria-hidden="true"></i>
-          <div class="slider">
-            <p><a href="https://www.facebook.com/search/top?q=swecha%20-%20andhra%20pradesh">facebook</a></p>
-          </div>
-        </li>
-        
-        <li class="twitter">
-          <i class="fa fa-twitter" aria-hidden="true"></i>
-          <div class="slider">
-            <p><a href="https://twitter.com/SwechaAP">twitter</a></p>
-
-          </div>
-        </li>
-        
-        <li class="instagram">
-          <i class="fa fa-instagram" aria-hidden="true"></i>
-          <div class="slider">
-            <p><a href= "https://www.instagram.com/swechaap/">Instagram</a></p>
-          </div>
-        </li>
-        
-        <li class="google">
-          <i class="fa fa-google" aria-hidden="true"></i>
-          <div class="slider">
-            <p>google</p>
-          </div>
-        </li>
-        
-        <li class="whatsapp">
-          <i class="fa fa-whatsapp" aria-hidden="true"></i>
-          <div class="slider">
-            <p>whatsapp</p>
-          </div>
-        </li>
-      </ul>
+    <!-- <div style = "background-image: url('https://th.bing.com/th/id/OIP.ODKZjbQydn9RQxR72n-sTwHaHa?pid=ImgDet&rs=1');"></div> -->
+  <section id="landing-page">
+    <div class="branding">
+      <div class="logo">
+        <a href="#" class="site-url"><img src="images/logo.png" alt="logo"></a>
+      </div>
+      <nav class="navbar">
+        <ul class="listing">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
     </div>
+    <div class="content">
+      <div class="content-inner">
+        <h1 class="heading">MVGR GLUG</h1>
+        <!-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, officia deserunt mollit anim id est laborum.</p> -->
+        <a href="../admin/adminlogin.html" class="btn-explore">Admin Login</a>
+        <a href="userlogin.html" class="btn-explore">User Login</a>
+      </div>
+    </div>
+    <ul class="social-icons listing">
+      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+    </ul>
+  </section>
 </body>
 </html>
