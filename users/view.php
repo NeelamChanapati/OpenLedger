@@ -1,7 +1,9 @@
-<?php $conn=new mysqli("localhost","root","root","test") or die("unable to connect"); ?>
+<?php $conn=new mysqli("localhost","root","","test") or die("unable to connect"); ?>
 		
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css?family=Open+Sans:600');
 body {
@@ -39,7 +41,8 @@ body {
   position: relative;
   margin: 20px;
   overflow: hidden;
-  width: 500px;
+  width: 1000px;
+  
 }
 .hidden {
   display: none;
@@ -142,6 +145,24 @@ body {
 .btn-group button:hover {
   background-color: #3e8e41;
 }
+.available{
+  padding-left: 10%;
+  float: left;
+}
+.unavailable{
+  padding-right: 10%;
+  float: right;
+}
+.pull-right{
+            font-family: 'Permanent Marker', cursive;
+            background-image: linear-gradient(to left, #d0f0c0, #000000);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+.pull-right:hover{
+  color: #d2f8d2;
+}
 </style>
 </head>
     <body>
@@ -149,7 +170,7 @@ body {
 <div class="containerOuter">
   <h3 align="center">List Of Items</h3>
   <div class="container">
-  
+  <div class="available">
   <?php  //Available Items
     ?><h2>Available items</h2><?php
     $sql = "SELECT iname from items where status=1";
@@ -164,7 +185,8 @@ body {
         <?php
             }
         ?>
-	
+	</div>
+  <div class="unavailable">
 <?php //Unavailable Items
 
     ?><h2>Unavailable items</h2><?php
@@ -179,7 +201,9 @@ body {
         <?php
             }
         ?>
-  
+        <a href="base.html" class="pull-right"><i class="fa fa-arrow-left"></i>Go Back</a>
+
+  </div>
   <!--  <input type="radio" class="hidden" id="input1" name="inputs">
     <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">Item-1</div></label>
     <div class="btn-group" style="margin-left: 30%;">

@@ -1,5 +1,5 @@
 <?php
-$conn=new mysqli("localhost","root","root","test") or die("unable to connect");
+$conn=new mysqli("localhost","root","","test") or die("unable to connect");
 ?>
 
 <html>
@@ -192,11 +192,14 @@ $id=mysqli_query($conn,"SELECT id from user where address='$mac'");
 //checkbox items are taken
 if(isset($_POST['submit'])){//to run PHP script on submit
     if(!empty($_POST['available'])){
+      $id=mysqli_query($conn,"SELECT id from taken where address='$mac'");
+
 // Loop to store and display values of individual checked checkbox.
         foreach($_POST["available"] as $selected){
             echo $selected."</br>";
 			mysqli_query($conn,"delete from taken where iname='$selected'");
             mysqli_query($conn,"UPDATE items SET status=1 where iname='$selected'");
+            mysqli_query($conn,"UPDATE items SET icount=icount+1 where iname='$selected'");       
             
 }
 

@@ -191,7 +191,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">Change Password</a>
                 </li>
-                <form method="POST" action="#">
+                <form method="POST" action="logout.php">
                  
                   <li class="nav-item">
                     <input style="padding: .5em .8em;font-size: 20px;color: orange;background: none;border: none;" type="submit" value="Logout">

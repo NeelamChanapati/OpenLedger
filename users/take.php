@@ -1,5 +1,5 @@
 <?php
-$conn=new mysqli("localhost","root","root","test") or die("unable to connect");
+$conn=new mysqli("localhost","root","","test") or die("unable to connect");
 ?>
 
 <html>
@@ -195,10 +195,12 @@ if(isset($_POST['submit'])){//to run PHP script on submit
             mysqli_query($conn,"INSERT into taken (id,iname,address) VALUES('$id1','$selected','$mac')");
 			mysqli_query($conn,"UPDATE items SET icount=icount-1 where iname='$selected'");
 			$count=mysqli_query($conn,"SELECT icount from items where iname='$selected'");
-			
-			
-			if($count=='0'){
+      $row = mysqli_fetch_array($count);
+      $count1=$row['icount'];
+      echo $count1;
+			if($count1==0){
 				mysqli_query($conn,"UPDATE items SET status=0 where iname='$selected'");
+
             }
 }
 

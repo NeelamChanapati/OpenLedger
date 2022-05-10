@@ -21,6 +21,7 @@
   .main-body {
       padding: 15px;
   }
+
   .card {
       box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
   }
@@ -191,7 +192,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">Change Password</a>
                 </li>
-                <form method="POST" action="#">
+                <form method="POST" action="logout.php">
                  
                   <li class="nav-item">
                     <input style="padding: .5em .8em;font-size: 20px;color: orange;background: none;border: none;" type="submit" value="Logout">
@@ -283,15 +284,15 @@
             <div class="row align-items-center">
               <div class="col-lg-12">
                 <h4 class="display-4">You are a <b>GLUGGIE</b></h4><hr><br>
-                <h5>You are role is intial and significant.</h5>
+                <h5>Your role is initial and significant.</h5>
                 <p class="lead text-muted"> On approval by an admin for the request of a particular item, you are allowed to take that item from glug. </p> 
                 <ul>
                   <li>You are the only responsible person after taking the item after approval until returning it.</li>
                   <li>You can view all the available items, make a request on a particular item to the respective admin or return an item from the below options</li>
                   <div class="display: inline;">
-                  <a style="margin-top:50px; text-decoration: none;color:black"class="btn btn-three" href="#"><h3>View Available Items</h3></a><br><br>
-                  <a style="text-decoration: none;color:black"class="btn btn-three" href="#"><h3>Request Items</h3></a><br><br>
-                  <a style="text-decoration: none;color:black"class="btn btn-three" href="#"><h3>Return Items</h3></a><br><br>
+                  <a style="margin-top:50px; text-decoration: none;color:black"class="btn btn-three button" href="view.php"><h3>View Available Items</h3></a><br><br>
+                  <a style="text-decoration: none;color:black"class="btn btn-three button" href="take.php"><h3>Request Items</h3></a><br><br>
+                  <a style="text-decoration: none;color:black"class="btn btn-three button" href="return.php"><h3>Return Items</h3></a><br><br>
                 </div>
                 </ul>
                 </p>
