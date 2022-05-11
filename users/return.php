@@ -4,7 +4,10 @@ $conn=new mysqli("localhost","root","","test") or die("unable to connect");
 
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
+
         @import url('https://fonts.googleapis.com/css?family=Open+Sans:600');
 body {
   align-items: center;
@@ -41,7 +44,7 @@ body {
   position: relative;
   margin: 20px;
   overflow: hidden;
-  width: 500px;
+  width: 1000px;
 }
 .hidden {
   display: none;
@@ -144,6 +147,24 @@ body {
 .btn-group button:hover {
   background-color: #3e8e41;
 }
+.available{
+  padding-left: 10%;
+  float: left;
+}
+.unavailable{
+  padding-right: 10%;
+  float: right;
+}
+.pull-right{
+            font-family: 'Permanent Marker', cursive;
+            background-image: linear-gradient(to left, #d0f0c0, #000000);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+.pull-right:hover{
+  color: #d2f8d2;
+}
 </style>
 </head>
     <body>
@@ -209,6 +230,8 @@ echo"<br>";
 }
 }
 ?>
+  
+  <a href="base.php" class="pull-right"><i class="fa fa-arrow-left"></i>Go Back</a>
   <!--  <input type="radio" class="hidden" id="input1" name="inputs">
     <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">Item-1</div></label>
     <div class="btn-group" style="margin-left: 30%;">

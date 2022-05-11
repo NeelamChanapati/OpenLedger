@@ -3,60 +3,61 @@
 $connection = mysqli_connect("localhost", "root", "","test");
  
 // Define variables and initialize with empty values
-$id = $uname = $password= $email="";
-$id_err = $uname_err = $password_err = $Email_err = "";
+$name ="";
+$count=0;
+$name_err="";
+$count_err=0;
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     //Id as input
-    $id=trim($_POST["id"]);
+    //$id=trim($_POST["id"]);
     // Validate name
     $input_name = trim($_POST["name"]);
     if(empty($input_name)){
-        $name_err = "Please enter a name.";
-    } elseif(!filter_var($input_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $name_err = "Please enter a valid name.";
+        $name_err = "Please enter Item  name.";
+    // } elseif(!filter_var($input_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+    //     $name_err = "Please enter a valid name.";
     } else{
         $name = $input_name;
     }
     
     // Validate password
-    $input_password = trim($_POST["password"]);
-    if(empty($input_password)){
-        $password_err = "Please enter an password.";     
+    $input_count = trim($_POST["count"]);
+    if(empty($input_count)){
+        $count_err = "Items must be greater than 0.";     
     } else{
-        $password = $input_password;
+        $count = $input_count;
     }
     
     // Validate email
     
     
     // Check input errors before inserting in database
-    if(empty($id_err) && empty($name_err) && empty($password_err)){
+    if(empty($id_err) && empty($name_err) && empty($count_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO user (id,name,password,address) VALUES (?, ?, ?,0)";
-    
-         
+        $sql = "INSERT INTO items (iname,status,icount) VALUES (?,1,?)";
          if($stmt = mysqli_prepare($connection, $sql)){
          // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt,"sss",$param_id, $param_name, $param_password);
+        mysqli_stmt_bind_param($stmt,"si",$param_name,$param_count);
             
         //     // Set parameters
-             $param_id = $id;
              $param_name = $name;
-             $param_password = $password;
+            //  $param_status = $status;
+             $param_count = $count;
+         }
             
             
             // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){
                    // Records created successfully. Redirect to landing page
-                 header("location: users.php");
+                 header("location: items.php");
                  exit();
                  } else{
                      echo "Oops! Something went wrong. Please try again later.";
                  }
              }
-    }
+         
         // Close statement
     //     mysqli_stmt_close($stmt);
     // }
@@ -88,20 +89,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <h2 class="mt-5">Create Record</h2>
                     <p>Please fill this form and submit to add Gluggie record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>id</label>
-                            <input type="text" name="id" required class="form-control <?php echo (!empty($id_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $id; ?>">
+                            <input type="text" name="id" class="form-control <?php echo (!empty($id_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $id; ?>">
                             <span class="invalid-feedback"><?php echo $id_err;?></span>
-                        </div>
+                        </div> -->
                         <div class="form-group">
-                            <label>Name</label>
-                            <textarea name="name" required class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>"><?php echo $uname; ?></textarea>
+                            <label>Item Name</label>
+                            <textarea name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>"><?php echo $name; ?></textarea>
                             <span class="invalid-feedback"><?php echo $name_err;?></span>
                         </div>
                         <div class="form-group">
-                            <label>password</label>
-                            <input type="password" name="password" required class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                            <span class="invalid-feedback"><?php echo $password_err;?></span>
+                            <label>Count</label>
+                            <input type="number" name="count" class="form-control <?php echo (!empty($count_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $count; ?>">
+                            <span class="invalid-feedback"><?php echo $count_err;?></span>
                         </div>
                         
                         <input type="submit" class="btn btn-primary" value="Submit">

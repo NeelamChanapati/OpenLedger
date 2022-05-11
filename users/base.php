@@ -178,6 +178,7 @@
 </style>
 <body>
 
+
         <div class="container">
           
             <nav class="navbar navbar-expand-sm navbar-dark text-center">
@@ -220,7 +221,15 @@
                           </div>
                         </div>
                       </div>
-                     
+                     <?php
+                     $conn=new mysqli("localhost","root","","test") or die("unable to connect");
+                     $string=exec('getmac'); 
+                     $mac=substr($string, 0, 17);
+                     $sql="select name,id from user where address='$mac'";
+                     $result=mysqli_query($conn,$sql);
+                     $row = mysqli_fetch_array($result);
+
+                     ?>
                     </div>
                     <div class="col-md-8">
                       <div class="card mb-3">
@@ -230,7 +239,7 @@
                               <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary" >
-                              Neelam Chanapati
+                              <?php  echo $row['name'];  ?>
                             </div>
                           </div>
                           <hr>

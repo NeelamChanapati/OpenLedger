@@ -201,9 +201,11 @@ body {
         <?php
             }
         ?>
-        <a href="base.html" class="pull-right"><i class="fa fa-arrow-left"></i>Go Back</a>
+        
 
   </div>
+  </div>
+  <a href="base.php" class="pull-right"><i class="fa fa-arrow-left"></i>Go Back</a>
   <!--  <input type="radio" class="hidden" id="input1" name="inputs">
     <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">Item-1</div></label>
     <div class="btn-group" style="margin-left: 30%;">

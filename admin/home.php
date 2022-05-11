@@ -1,3 +1,5 @@
+<?php    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -219,7 +221,15 @@
                           </div>
                         </div>
                       </div>
-                     
+                      <?php
+                     $conn=new mysqli("localhost","root","","test") or die("unable to connect");
+                     $string=exec('getmac'); 
+                     $mac=substr($string, 0, 17);
+                     $sql="select name,id from user where address='$mac'";
+                     $result=mysqli_query($conn,$sql);
+                     $row = mysqli_fetch_array($result);
+
+                     ?>
                     </div>
                     <div class="col-md-8">
                       <div class="card mb-3">
@@ -229,7 +239,7 @@
                               <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary" >
-                              Neelam Chanapati
+                            <?php  echo $row['name'];  ?>
                             </div>
                           </div>
                           <hr>
@@ -290,7 +300,7 @@
                   <li>You have been given access to all glugies and items information.</li>
                   <div class="display: inline;">
                   <a style="margin-top:50px; text-decoration: none;color:black"class="btn btn-three" href="users.php"><h3>Glugies Information</h3></a><br><br>
-                  <a style="text-decoration: none;color:black"class="btn btn-three" href="#"><h3>Items Information</h3></a><br><br>
+                  <a style="text-decoration: none;color:black"class="btn btn-three" href="items.php"><h3>Items Information</h3></a><br><br>
                   <!-- <a style="text-decoration: none;color:black"class="btn btn-three" href="#"><h3>Return Items</h3></a><br><br> -->
                 </div>
                 </ul>

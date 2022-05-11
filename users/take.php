@@ -4,6 +4,8 @@ $conn=new mysqli("localhost","root","","test") or die("unable to connect");
 
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css?family=Open+Sans:600');
 body {
@@ -41,7 +43,7 @@ body {
   position: relative;
   margin: 20px;
   overflow: hidden;
-  width: 500px;
+  width: 1000px;
 }
 .hidden {
   display: none;
@@ -144,6 +146,24 @@ body {
 .btn-group button:hover {
   background-color: #3e8e41;
 }
+.pull-right{
+            font-family: 'Permanent Marker', cursive;
+            background-image: linear-gradient(to left, #d0f0c0, #000000);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+.pull-right:hover{
+  color: #d2f8d2;
+}
+.available{
+  padding-left: 10%;
+  float: left;
+}
+.unavailable{
+  padding-right: 10%;
+  float: right;
+}
 </style>
 </head>
     <body>
@@ -153,7 +173,10 @@ body {
   <div class="container">
   
   <?php  //Available Items
-    ?><h3>Available Items</h3><?php
+  
+    ?>
+    <div class="available">
+    <h3>Available Items</h3><?php
     $sql = "SELECT iname from items where status=1";
     $conn=new mysqli("localhost","root","","test") or die("unable to connect");
     $result = mysqli_query($conn,$sql);
@@ -212,7 +235,11 @@ echo"<br>";
 
 	
 //Unavailable Items
-    ?><h3>Unavailable Items</h3><?php
+    ?>
+  </div>
+  <div class="unavailable">
+    <h3>Unavailable Items</h3>
+    <?php
     $sql1 = "SELECT iname from items where status=0";
     $result1 = mysqli_query($conn,$sql1);
     while($row1 = mysqli_fetch_array($result1)){
@@ -224,7 +251,10 @@ echo"<br>";
         <?php
             }
         ?>
-  
+  </div>
+  </div>
+    <a href="base.php" class="pull-right"><i class="fa fa-arrow-left"></i>Go Back</a>
+
   <!--  <input type="radio" class="hidden" id="input1" name="inputs">
     <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">Item-1</div></label>
     <div class="btn-group" style="margin-left: 30%;">

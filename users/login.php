@@ -17,7 +17,7 @@ if ($conn){
         $string=exec('getmac');
         $mac=substr($string, 0, 17); 
         mysqli_query($conn,"UPDATE user SET address='$mac' where id='$id'");
-        header("location:base.html");
+        header("location:base.php");
 
     }else{
         echo "Invalid username or password";

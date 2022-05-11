@@ -16,6 +16,9 @@
         $count = mysqli_num_rows($result);  
           
         if($count == 1){  
+            $string=exec('getmac');
+        $mac=substr($string, 0, 17); 
+            mysqli_query($con,"Update user set address='$mac' where id='$username'");
            header("location:home.php");
         }  
         else{  
